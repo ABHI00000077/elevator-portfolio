@@ -6,8 +6,7 @@ import LoadingOverlay from "./components/ui/LoadingOverlay";
 import ElevatorScene from "./scenes/ElevatorScene";
 import FloorPanel from "./components/ui/FloorPanel";
 import BlueprintModal from "./components/ui/BlueprintModal";
-import { floors } from "./data/floor";
-import { floorContent, type FloorPoster } from "./data/floorContent";
+import {type FloorPoster } from "./data/floorContent";
 import type { ElevatorState } from "./hooks/useElevator";
 import CodeforcesModal
 from "./components/ui/CodeforcesModal";

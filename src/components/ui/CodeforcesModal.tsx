@@ -89,7 +89,7 @@ function StatCard({
     </div>
   );
 }
-
+const API_URL = import.meta.env.VITE_API_URL;
 function CodeforcesModal({ handle, onClose }: Props) {
   const [data, setData] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState(true);
@@ -99,8 +99,8 @@ function CodeforcesModal({ handle, onClose }: Props) {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://localhost:5000/api/codeforces/${handle}`
-        );
+  `${API_URL}/api/codeforces/${handle}`
+);
         const json = await res.json();
         setData(json);
       } catch (error) {
