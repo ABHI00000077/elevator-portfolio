@@ -1,7 +1,48 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import type { FloorPoster } from "../../data/floorContent";
+function renderDescription(
+  description: string,
+) {
+  const parts = description.split(
+    /\[IMAGE:(.*?)\]/gs
+  );
 
+  return parts.map((part, index) => {
+    const isImage =
+      part.startsWith("/images/");
+
+    if (isImage) {
+      return (
+        <img
+          key={index}
+          src={part}
+          alt=""
+          style={{
+            width: "100%",
+            borderRadius: "1px",
+            border: `0.5px solid black`,
+            margin: "18px 0",
+            display: "block",
+          }}
+        />
+      );
+    }
+
+    return (
+      <p
+        key={index}
+        style={{
+          lineHeight: 1.8,
+          marginBottom: "14px",
+          color: "#222",
+        }}
+      >
+        {part.trim()}
+      </p>
+    );
+  });
+}
 type Props = {
   poster: FloorPoster;
   floorNumber: number;
@@ -293,6 +334,7 @@ function BlueprintModal({
             <div>
               <h3
                 style={{
+                  fontFamily: "Rajdhani",
                   marginTop: 0,
                   marginBottom: "12px",
                   letterSpacing: "2px",
@@ -304,7 +346,7 @@ function BlueprintModal({
 
               <div
                 style={{
-                  height: "320px",
+                  height: "clamp(390px, 50vh, 600px)",
                   border: `2px solid ${theme.border}`,
                   borderRadius: "16px",
                   background: poster.id
@@ -352,6 +394,7 @@ function BlueprintModal({
             >
               <h1
                 style={{
+                  fontFamily: "Rajdhani",
                   marginTop: 0,
                   marginBottom: "18px",
                   fontSize: "42px",
@@ -365,6 +408,7 @@ function BlueprintModal({
                 <>
                   <h3
                     style={{
+                      fontFamily: "Rajdhani",
                       marginBottom: "8px",
                       color: theme.accent,
                       letterSpacing: "2px",
@@ -383,6 +427,7 @@ function BlueprintModal({
                 <>
                   <h3
                     style={{
+                      fontFamily: "Rajdhani",
                       marginBottom: "10px",
                       color: theme.accent,
                       letterSpacing: "2px",
@@ -420,6 +465,7 @@ function BlueprintModal({
 
               <h3
                 style={{
+                  fontFamily: "Rajdhani",
                   marginBottom: "8px",
                   color: theme.accent,
                   letterSpacing: "2px",
@@ -429,17 +475,12 @@ function BlueprintModal({
                 {labels.description}
               </h3>
 
-              <p
-                style={{
-                  lineHeight: 1.8,
-                  fontSize: "18px",
-                  marginTop: 0,
-                  marginBottom: "24px",
-                  color: "#222",
-                }}
+              <div
               >
-                {poster.description}
-              </p>
+                {renderDescription(
+  poster.description
+)}
+              </div>
 
               {hasButtons && (
                 <div

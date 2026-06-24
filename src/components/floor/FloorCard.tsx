@@ -2,9 +2,10 @@ import { Text } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useMemo, useRef, useState } from "react";
 import * as THREE from "three";
-
+import { RoundedBox } from "@react-three/drei";
 import type { FloorPoster } from "../../data/floorContent";
-
+const POSTER_FONT =
+  "https://fonts.gstatic.com/s/rajdhani/v15/LDIxapCSOBg7S-QT7q4AOeekWPrP.ttf";
 type Props = {
   poster: FloorPoster;
   position: [number, number, number];
@@ -94,15 +95,23 @@ function FloorCard({
 
       {/* Header strip */}
       <mesh position={[0, posterHeight * 0.37, 0.05]}>
-        <boxGeometry args={[posterWidth - 0.05, 0.28, 0.02]} />
-        <meshStandardMaterial
-          color={accent}
-          emissive={hovered ? "#554400" : "#000000"}
-          emissiveIntensity={hovered ? 0.12 : 0}
-        />
+        <RoundedBox
+  args={[
+    posterWidth - 0.05,
+    0.28,
+    0.02,
+  ]}
+  radius={0.04}
+  smoothness={6}
+>
+  <meshStandardMaterial
+    color={accent}
+  />
+</RoundedBox>
       </mesh>
 
       <Text
+      font={POSTER_FONT}
         position={[0, posterHeight * 0.37, 0.08]}
         fontSize={0.12}
         color="#222"
@@ -115,6 +124,7 @@ function FloorCard({
       {variant === "grid" ? (
         <>
           <Text
+          font={POSTER_FONT}
             position={[0, 0.12, 0.08]}
             fontSize={0.18}
             color="#111"
@@ -128,6 +138,7 @@ function FloorCard({
 
           {poster.category && (
             <Text
+            font={POSTER_FONT}
               position={[0, -0.18, 0.08]}
               fontSize={0.09}
               color="#444"
@@ -141,6 +152,7 @@ function FloorCard({
           )}
 
           <Text
+          font={POSTER_FONT}
             position={[0, -0.54, 0.08]}
             fontSize={0.075}
             color="#666"
@@ -153,8 +165,9 @@ function FloorCard({
       ) : variant === "profile" ? (
         <>
   <Text
+  font={POSTER_FONT}
     position={[-2.3, 0.55, 0.08]}
-    fontSize={0.26}
+    fontSize={0.30}
     color="#111"
     anchorX="left"
     anchorY="middle"
@@ -165,8 +178,9 @@ function FloorCard({
 
   {poster.category && (
     <Text
+    font={POSTER_FONT}
       position={[-2.3, 0.2, 0.08]}
-      fontSize={0.10}
+      fontSize={0.15}
       color="#666"
       anchorX="left"
       anchorY="middle"
@@ -177,8 +191,9 @@ function FloorCard({
 
   {poster.tech && (
     <Text
+    font={POSTER_FONT}
       position={[-2.3, -0.05, 0.08]}
-      fontSize={0.09}
+      fontSize={0.11}
       color="#555"
       anchorX="left"
       anchorY="middle"
@@ -197,8 +212,9 @@ function FloorCard({
   </mesh>
 
   <Text
+  font={POSTER_FONT}
     position={[-2.3, -0.75, 0.08]}
-    fontSize={0.11}
+    fontSize={0.14}
     color="#111"
     anchorX="left"
     anchorY="middle"

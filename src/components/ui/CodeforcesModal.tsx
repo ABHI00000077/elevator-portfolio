@@ -276,6 +276,7 @@ const totalContestsOverall =
 
           <h1
             style={{
+              fontFamily: "Rajdhani",
               margin: "0 0 20px 0",
               fontSize: "40px",
               lineHeight: 1.05,

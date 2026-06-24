@@ -29,7 +29,7 @@ export const floorContent: Record<number, FloorContent> = {
     posters: [
       {
         image: "images/image.jpeg",
-        title: "Hi, I am Abhinav",
+        title: "HI, I AM ABHINAV",
 
         category: "Introduction",
         tech: ["IIT Ropar", "Software Developer", "Game Development Enthusiast"],
